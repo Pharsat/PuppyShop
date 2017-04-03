@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#75E2E9</color>
-    <color name="colorPrimaryDark">#4D3E42</color>
-    <color name="colorAccent">#EF5344</color>
-    <color name="navigationBarColor">#e3c885</color>
+    <color name="colorPrimary">#8BC34A</color>
+    <color name="colorPrimaryDark">#689F38</color>
+    <color name="primary_light">#DCEDC8</color>
+    <color name="colorAccent">#FF5722</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="icons">#212121</color>
+    <color name="divider">#BDBDBD</color>
 </resources>
