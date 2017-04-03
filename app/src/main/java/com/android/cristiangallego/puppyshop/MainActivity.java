@@ -67,9 +67,14 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.iCincoFavoritos) {
             Intent irACincoFavoritos = new Intent(this, CincoFavoritos.class);
             ArrayList<Mascota> mascotasFavoritas = new ArrayList<Mascota>();
+            int contador = 0;
             for (Mascota mascota : mascotas) {
                 if(mascota.isMeGusta()){
                     mascotasFavoritas.add(mascota);
+                    contador++;
+                }
+                if(contador == 5){
+                    break;
                 }
             }
             irACincoFavoritos.putExtra(getResources().getString(R.string.pCincoMascotas), mascotasFavoritas);
