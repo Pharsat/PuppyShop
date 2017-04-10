@@ -14,7 +14,7 @@ public class EnviarCorreoAsyncTask extends AsyncTask<ElementosEnvioCorreo, Void,
     @Override
     protected Boolean doInBackground(ElementosEnvioCorreo... params) {
         try {
-            GMailSender sender = new GMailSender("pharsat@gmail.com", "NoTengoTele");
+            GMailSender sender = new GMailSender("pharsatpruebas@gmail.com", "megustalainteligencia");
             sender.sendMail("PuppyShop Comentario",
                     "El señor: " + params[0].getNombre() + " te informa que '" + params[0].getMensaje() + "' responder al correo: " + params[0].getCorreo(),
                     "pharsat@gmail.com",
