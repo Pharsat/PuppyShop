@@ -1,0 +1,38 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.android.cristiangallego.puppyshop.fragmentos.MascotaPerfilFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/civFotoMascota"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:src="@drawable/dog_paw_icon" />
+
+    <TextView
+        android:id="@+id/tvNombreMascota"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/defectoNombreMascota"
+        android:textAlignment="center"
+        android:textSize="30dp"/>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:background="@color/divider" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvFotosDeLaMascotaActual"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"></android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

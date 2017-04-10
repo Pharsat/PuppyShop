@@ -4,7 +4,7 @@
     android:id="@+id/activity_cinco_favoritos"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.android.cristiangallego.puppyshop.CincoFavoritos">
+    tools:context="com.android.cristiangallego.puppyshop.vistas.CincoFavoritos">
 
     <LinearLayout
         android:layout_width="match_parent"

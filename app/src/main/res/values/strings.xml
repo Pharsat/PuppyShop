@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">PuppyShop</string>
     <string name="pCincoMascotas">PuppyShop</string>
+    <string name="mContacto">Contacto</string>
+    <string name="mAcercaDe">Acerca de</string>
+    <string name="hNombre">Nombre</string>
+    <string name="bEnviarContacto">Enviar Contacto</string>
+    <string name="hCorreo">Correo</string>
+    <string name="hMensaje">Mensaje</string>
+    <string name="bioNombre">Cristian Felipe Gallego Ramírez</string>
+    <string name="bioTexto">Programador joven y excentrico 27 años de edad y guapo.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="defectoNombreMascota">Selecciona una mascota de la lista principal</string>
 </resources>
