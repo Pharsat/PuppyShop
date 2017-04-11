@@ -115,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
         this.perritosFragment = new MascotasPrincipalFragment();
         this.perritosFragment.setMascotas(mascotas);
         this.perritoFragment = new MascotaPerfilFragment();
+        this.perritoFragment.setMascota(mascotas.get(mascotas.size() - 1));
         fragments.add(this.perritosFragment);
         fragments.add(this.perritoFragment);
         return fragments;
@@ -192,5 +193,13 @@ public class MainActivity extends AppCompatActivity {
         fotosSecundarias7.add(new FotoMascota(R.drawable.peluche, 8));
         fotosSecundarias7.add(new FotoMascota(R.drawable.peluche, 9));
         mascotas.add(new Mascota(new FotoMascota(R.drawable.peluche, 9), "Piripitiflautica", 9, false, fotosSecundarias7));
+
+        ArrayList<FotoMascota> fotosSecundariasJuancho = new ArrayList<>();
+        fotosSecundariasJuancho.add(new FotoMascota(R.drawable.juancho, 1));
+        fotosSecundariasJuancho.add(new FotoMascota(R.drawable.juancho, 2));
+        fotosSecundariasJuancho.add(new FotoMascota(R.drawable.juancho, 5));
+        fotosSecundariasJuancho.add(new FotoMascota(R.drawable.juancho, 8));
+        fotosSecundariasJuancho.add(new FotoMascota(R.drawable.juancho, 9));
+        mascotas.add(new Mascota(new FotoMascota(R.drawable.juancho, 9), "Juancho", 9, false, fotosSecundariasJuancho));
     }
 }

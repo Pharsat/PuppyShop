@@ -24,8 +24,20 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".vistas.MainActivity" />
         </activity>
-        <activity android:name=".vistas.Contacto" />
-        <activity android:name=".vistas.Biografia"></activity>
+        <activity
+            android:name=".vistas.Contacto"
+            android:parentActivityName=".vistas.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".vistas.MainActivity" />
+        </activity>
+        <activity
+            android:name=".vistas.Biografia"
+            android:parentActivityName=".vistas.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".vistas.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

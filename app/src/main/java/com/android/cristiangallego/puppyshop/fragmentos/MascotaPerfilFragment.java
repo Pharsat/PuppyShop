@@ -40,6 +40,15 @@ public class MascotaPerfilFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         this.vista = inflater.inflate(R.layout.fragment_mascota_perfil, container, false);
+
+        if (mascota != null) {
+            this.civPerfilMascota = (CircularImageView) vista.findViewById(R.id.civFotoMascota);
+            this.tvNombreMascota = (TextView) vista.findViewById(R.id.tvNombreMascota);
+            this.civPerfilMascota.setImageResource(mascota.getFotoPrincipalMascota().getNroFoto());
+            this.tvNombreMascota.setText(mascota.getNombre());
+            InicializarRecyclerView();
+        }
+
         return vista;
     }
 
@@ -48,16 +57,6 @@ public class MascotaPerfilFragment extends Fragment {
         rvFotosDeLaMascotaActual.setAdapter(contactoAdaptador);
     }
 
-    public void RepintarPantalla(Mascota mascota) {
-        this.mascota = mascota;
-        if (mascota != null) {
-            this.civPerfilMascota = (CircularImageView) vista.findViewById(R.id.civFotoMascota);
-            this.tvNombreMascota = (TextView) vista.findViewById(R.id.tvNombreMascota);
-            this.civPerfilMascota.setImageResource(mascota.getFotoPrincipalMascota().getNroFoto());
-            this.tvNombreMascota.setText(mascota.getNombre());
-            InicializarRecyclerView();
-        }
-    }
 
     private void InicializarRecyclerView() {
         this.rvFotosDeLaMascotaActual = (RecyclerView) vista.findViewById(R.id.rvFotosDeLaMascotaActual);
@@ -69,5 +68,9 @@ public class MascotaPerfilFragment extends Fragment {
 
         this.rvFotosDeLaMascotaActual.setLayoutManager(glm);
         InicializarAdaptador();
+    }
+
+    public void setMascota(Mascota mascota) {
+        this.mascota = mascota;
     }
 }

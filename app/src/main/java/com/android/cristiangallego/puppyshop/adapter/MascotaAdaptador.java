@@ -39,13 +39,13 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
         final Mascota mascota = mascotas.get(position);
         pintarElementos(holder, mascota);
 
-        holder.ivFotoMascota.setOnClickListener(new View.OnClickListener() {
+        /*holder.ivFotoMascota.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((MainActivity)actividad).getPerritoFragment().RepintarPantalla(mascota);
                 ((MainActivity)actividad).getTabLayout().getTabAt(1).select();
             }
-        });
+        });*/
         holder.ibLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

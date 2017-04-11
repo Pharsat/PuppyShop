@@ -16,7 +16,7 @@
         <ImageView
             android:id="@+id/ivFotoMascota"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="140dp"
             android:layout_gravity="center_horizontal"
             android:scaleType="centerCrop"
             android:src="@drawable/azulado"
