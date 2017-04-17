@@ -49,7 +49,7 @@ public class MascotasPrincipalFragment extends Fragment {
     }
 
     public void InicializarAdaptador() {
-        MascotaAdaptador contactoAdaptador = new MascotaAdaptador(mascotas, getActivity());
+        MascotaAdaptador contactoAdaptador = new MascotaAdaptador(mascotas, getActivity(), getContext());
         rvMascotas.setAdapter(contactoAdaptador);
     }
 }

@@ -52,7 +52,7 @@ public class CincoFavoritos extends AppCompatActivity {
     }
 
     public void InicializarAdaptador() {
-        MascotaAdaptador contactoAdaptador = new MascotaAdaptador(mascotas, this);
+        MascotaAdaptador contactoAdaptador = new MascotaAdaptador(mascotas, this, this);
         rvMascotas.setAdapter(contactoAdaptador);
     }
 

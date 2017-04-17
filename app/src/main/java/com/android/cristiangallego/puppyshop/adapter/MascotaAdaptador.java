@@ -1,6 +1,7 @@
 package com.android.cristiangallego.puppyshop.adapter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.cristiangallego.puppyshop.R;
+import com.android.cristiangallego.puppyshop.bd.BaseDatos;
 import com.android.cristiangallego.puppyshop.pojo.Mascota;
 import com.android.cristiangallego.puppyshop.vistas.MainActivity;
 
@@ -22,10 +24,12 @@ import java.util.ArrayList;
 public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.MascotaViewHolder> {
     ArrayList<Mascota> mascotas;
     Activity actividad;
+    Context context;
 
-    public MascotaAdaptador(ArrayList<Mascota> mascotas, Activity actividad) {
+    public MascotaAdaptador(ArrayList<Mascota> mascotas, Activity actividad, Context context) {
         this.mascotas = mascotas;
         this.actividad = actividad;
+        this.context = context;
     }
 
     @Override
@@ -51,10 +55,15 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
             public void onClick(View v) {
                 boolean nuevoMegusta = !mascota.isMeGusta();
                 mascota.setMeGusta(nuevoMegusta);
+
+                BaseDatos db = new BaseDatos(context);
+                // insertarContactos(db);
+                db.darLike(mascota.getId(),nuevoMegusta,mascota.getFotoPrincipalMascota().getId());
+
                 if (nuevoMegusta) {
-                    mascota.setRating(mascota.getRating() + 1);
+                    mascota.getFotoPrincipalMascota().setNroLikes(mascota.getFotoPrincipalMascota().getNroLikes() + 1);
                 } else {
-                    mascota.setRating(mascota.getRating() - 1);
+                    mascota.getFotoPrincipalMascota().setNroLikes(mascota.getFotoPrincipalMascota().getNroLikes() - 1);
                 }
                 pintarElementos(holder, mascota);
             }
@@ -69,7 +78,7 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
     private void pintarElementos(MascotaViewHolder holder, Mascota mascota) {
         holder.ivFotoMascota.setImageResource(mascota.getFotoPrincipalMascota().getNroFoto());
         holder.tvNombreMascota.setText(mascota.getNombre());
-        holder.tvRaitingMascota.setText(String.valueOf(mascota.getRating()));
+        holder.tvRaitingMascota.setText(String.valueOf(mascota.getFotoPrincipalMascota().getNroLikes()));
         if (mascota.isMeGusta()) {
             holder.ibLike.setImageResource(R.drawable.dog_bone_filled_50);
         } else {

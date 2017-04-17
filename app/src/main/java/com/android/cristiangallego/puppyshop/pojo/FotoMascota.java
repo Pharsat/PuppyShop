@@ -8,6 +8,12 @@ import java.io.Serializable;
 
 public class FotoMascota implements Serializable {
     private int nroFoto;
+    private int nroLikes;
+    private int id;
+
+    public FotoMascota() {
+
+    }
 
     public int getNroFoto() {
         return nroFoto;
@@ -25,10 +31,17 @@ public class FotoMascota implements Serializable {
         this.nroLikes = nroLikes;
     }
 
-    private int nroLikes;
-
-    public FotoMascota(int nroFoto, int nroLikes) {
+    public FotoMascota(int nroFoto, int nroLikes, int id) {
         this.nroFoto = nroFoto;
         this.nroLikes = nroLikes;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

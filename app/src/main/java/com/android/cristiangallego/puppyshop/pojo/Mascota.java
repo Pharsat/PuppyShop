@@ -9,6 +9,13 @@ import java.util.ArrayList;
 
 public class Mascota implements Serializable {
 
+    private FotoMascota fotoPrincipalMascota;
+    private String nombre;
+    private int rating;
+    private boolean meGusta;
+    private ArrayList<FotoMascota> fotosSecundarias;
+    private int id;
+
     public Mascota(FotoMascota fotoMascota, String nombre, int rating, boolean meGusta, ArrayList<FotoMascota> fotosSecundarias) {
         this.fotoPrincipalMascota = fotoMascota;
         this.nombre = nombre;
@@ -17,11 +24,9 @@ public class Mascota implements Serializable {
         this.fotosSecundarias = fotosSecundarias;
     }
 
-    private FotoMascota fotoPrincipalMascota;
-    private String nombre;
-    private int rating;
-    private boolean meGusta;
-    private ArrayList<FotoMascota> fotosSecundarias;
+    public Mascota() {
+
+    }
 
     public FotoMascota getFotoPrincipalMascota() {
         return fotoPrincipalMascota;
@@ -61,5 +66,13 @@ public class Mascota implements Serializable {
 
     public void setFotosSecundarias(ArrayList<FotoMascota> fotosSecundarias) {
         this.fotosSecundarias = fotosSecundarias;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

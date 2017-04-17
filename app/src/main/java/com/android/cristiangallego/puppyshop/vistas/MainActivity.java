@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.android.cristiangallego.puppyshop.R;
 import com.android.cristiangallego.puppyshop.adapter.PageAdapter;
+import com.android.cristiangallego.puppyshop.bd.BaseDatos;
 import com.android.cristiangallego.puppyshop.fragmentos.MascotaPerfilFragment;
 import com.android.cristiangallego.puppyshop.fragmentos.MascotasPrincipalFragment;
 import com.android.cristiangallego.puppyshop.pojo.FotoMascota;
@@ -137,7 +138,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void InicializarListaDeMascotas() {
-        this.mascotas = new ArrayList<>();
+
+        BaseDatos db = new BaseDatos(this);
+        // insertarContactos(db);
+        this.mascotas = db.otenerListaPrincipal();
+
+       /* this.mascotas = new ArrayList<>();
+
         ArrayList<FotoMascota> fotosSecundarias1 = new ArrayList<>();
         fotosSecundarias1.add(new FotoMascota(R.drawable.azulado, 1));
         fotosSecundarias1.add(new FotoMascota(R.drawable.azulado, 2));
@@ -200,6 +207,6 @@ public class MainActivity extends AppCompatActivity {
         fotosSecundariasJuancho.add(new FotoMascota(R.drawable.juancho, 5));
         fotosSecundariasJuancho.add(new FotoMascota(R.drawable.juancho, 8));
         fotosSecundariasJuancho.add(new FotoMascota(R.drawable.juancho, 9));
-        mascotas.add(new Mascota(new FotoMascota(R.drawable.juancho, 9), "Juancho", 9, false, fotosSecundariasJuancho));
+        mascotas.add(new Mascota(new FotoMascota(R.drawable.juancho, 9), "Juancho", 9, false, fotosSecundariasJuancho));*/
     }
 }
