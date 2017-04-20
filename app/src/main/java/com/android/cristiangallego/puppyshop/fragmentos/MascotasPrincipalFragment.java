@@ -12,16 +12,19 @@ import android.view.ViewGroup;
 import com.android.cristiangallego.puppyshop.R;
 import com.android.cristiangallego.puppyshop.adapter.MascotaAdaptador;
 import com.android.cristiangallego.puppyshop.pojo.Mascota;
+import com.android.cristiangallego.puppyshop.presentador.IMascotasPrincipalFragmentPresenter;
+import com.android.cristiangallego.puppyshop.presentador.MascotasPrincipalFragmentPresenter;
 
 import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MascotasPrincipalFragment extends Fragment {
+public class MascotasPrincipalFragment extends Fragment implements IMascotasPrincipalFragmentView {
 
     private RecyclerView rvMascotas;
     private ArrayList<Mascota> mascotas;
+    private IMascotasPrincipalFragmentPresenter presenter;
 
     public MascotasPrincipalFragment() {
         // Required empty public constructor
@@ -36,20 +39,27 @@ public class MascotasPrincipalFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View vista = inflater.inflate(R.layout.fragment_mascotas_principal, container, false);
-
         this.rvMascotas = (RecyclerView) vista.findViewById(R.id.rvMascotas);
-
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-
-        rvMascotas.setLayoutManager(llm);
-        InicializarAdaptador();
+        presenter = new MascotasPrincipalFragmentPresenter(this,getContext());
 
         return vista;
     }
 
-    public void InicializarAdaptador() {
-        MascotaAdaptador contactoAdaptador = new MascotaAdaptador(mascotas, getActivity(), getContext());
-        rvMascotas.setAdapter(contactoAdaptador);
+    @Override
+    public MascotaAdaptador crearAdaptador(ArrayList<Mascota> mascotas) {
+        return new MascotaAdaptador(mascotas, getActivity(), getContext());
+
+    }
+
+    @Override
+    public void inicializarAdaptadorRV(MascotaAdaptador adaptador) {
+        rvMascotas.setAdapter(adaptador);
+    }
+
+    @Override
+    public void generarLayoutVertical() {
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        rvMascotas.setLayoutManager(llm);
     }
 }
