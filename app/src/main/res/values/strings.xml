@@ -16,4 +16,5 @@
     <string name="configurar_cuenta">Configurar Cuenta</string>
     <string name="configura">Configura</string>
     <string name="nombre_de_usuario">Nombre de usuario</string>
+    <string name="perfilACargar">perfilACargar</string>
 </resources>

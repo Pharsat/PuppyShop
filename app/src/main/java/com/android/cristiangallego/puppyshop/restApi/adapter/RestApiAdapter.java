@@ -4,6 +4,7 @@ import com.android.cristiangallego.puppyshop.restApi.ConstantesRestApi;
 import com.android.cristiangallego.puppyshop.restApi.IEndpointApi;
 import com.android.cristiangallego.puppyshop.restApi.deserializador.AmigosDeserializador;
 import com.android.cristiangallego.puppyshop.restApi.deserializador.MascotaDeserializador;
+import com.android.cristiangallego.puppyshop.restApi.deserializador.SearchDeserializador;
 import com.android.cristiangallego.puppyshop.restApi.deserializador.SelfDeserializador;
 import com.android.cristiangallego.puppyshop.restApi.model.AmigosResponse;
 import com.android.cristiangallego.puppyshop.restApi.model.MascotaResponse;
@@ -38,7 +39,7 @@ public class RestApiAdapter {
         return gsonBuilder.create();
     }
 
-    public Gson construyeGsonDeserializadorUserFollowedBy(){
+    public Gson construyeGsonDeserializadorUserFollowed(){
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(AmigosResponse.class, new AmigosDeserializador());
         return gsonBuilder.create();
@@ -47,6 +48,12 @@ public class RestApiAdapter {
     public Gson construyeGsonDeserializadorSelfInfo(){
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(MascotaResponse.class, new SelfDeserializador());
+        return gsonBuilder.create();
+    }
+
+    public Gson construyeGsonDeserializadorSearchInfo(){
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(MascotaResponse.class, new SearchDeserializador());
         return gsonBuilder.create();
     }
 }

@@ -1,5 +1,7 @@
 package com.android.cristiangallego.puppyshop.presentador;
 
+import java.util.ArrayList;
+
 /**
  * Created by USUARIO on 19/04/2017.
  */
@@ -7,5 +9,6 @@ package com.android.cristiangallego.puppyshop.presentador;
 public interface IMascotasPrincipalFragmentPresenter {
     void obteneMascotasBaseDeDatos();
     void mostrarMactoasRV();
-    void obtenerMediosRecientes();
+    void obtenerMediosRecientes(ArrayList<String> pendientesACargar);
+    void consultarALosQueYoSigo();
 }

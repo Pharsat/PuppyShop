@@ -24,7 +24,7 @@ public class MascotaResponse {
         ArrayList<FotoMascota> fotoMascotas = new ArrayList<>();
         for (Mascota mascota : mascotas) {
             FotoMascota fotoMascota = new FotoMascota();
-            fotoMascota.setNroLikes(mascota.getRating());
+            fotoMascota.setNroLikes(mascota.getFotoPrincipalMascota().getNroLikes());
             fotoMascota.setUrl(mascota.getFotoPrincipalMascota().getUrl());
             fotoMascota.setId(mascota.getId());
             fotoMascotas.add(fotoMascota);

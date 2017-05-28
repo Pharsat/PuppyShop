@@ -22,6 +22,7 @@ import com.android.cristiangallego.puppyshop.fragmentos.MascotaPerfilFragment;
 import com.android.cristiangallego.puppyshop.fragmentos.MascotasPrincipalFragment;
 import com.android.cristiangallego.puppyshop.pojo.FotoMascota;
 import com.android.cristiangallego.puppyshop.pojo.Mascota;
+import com.android.cristiangallego.puppyshop.restApi.ConstantesRestApi;
 import com.android.cristiangallego.puppyshop.restApi.IEndpointApi;
 import com.android.cristiangallego.puppyshop.restApi.adapter.RestApiAdapter;
 import com.android.cristiangallego.puppyshop.restApi.model.MascotaResponse;
@@ -54,16 +55,26 @@ public class MainActivity extends AppCompatActivity {
 
     private MascotaPerfilFragment perritoFragment;
 
+    private String idClienteACargar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         instanciarDiseno();
+
+        Bundle parametros = getIntent().getExtras();
+        if (parametros != null) {
+            if (parametros.containsKey(getResources().getString(R.string.perfilACargar))) {
+                this.idClienteACargar = parametros.getString(getResources().getString(R.string.pCincoMascotas));
+            }
+        }
+
         obtenerPerfilPropio();
     }
 
-    private void ContinuarCargaDeInformacion (){
+    private void ContinuarCargaDeInformacion() {
         setUpViewPager();
 
         setSupportActionBar(this.tbBarraHerramientas);
@@ -228,9 +239,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void obtenerPerfilPropio() {
         RestApiAdapter restApiAdapter = new RestApiAdapter();
-        Gson gson = restApiAdapter.construyeGsonDeserializadorSelfInfo();
-        IEndpointApi endpointsApi = restApiAdapter.establecerConexionRestApiInstagram(gson);
-        Call<MascotaResponse> contactoResponseCall = endpointsApi.getSelfInformation();
+        Call<MascotaResponse> contactoResponseCall;
+        if (this.idClienteACargar != null && !this.idClienteACargar.isEmpty() && !this.idClienteACargar.equals("null")) {
+            Gson gson = restApiAdapter.construyeGsonDeserializadorUserMediaRecent();
+            IEndpointApi endpointsApi = restApiAdapter.establecerConexionRestApiInstagram(gson);
+            contactoResponseCall = endpointsApi.getRecentUserMedia(ConstantesRestApi.URL_GET_USER_RECENT_MEDIA.replace("{user-id}", this.idClienteACargar));
+        } else {
+            Gson gson = restApiAdapter.construyeGsonDeserializadorSelfInfo();
+            IEndpointApi endpointsApi = restApiAdapter.establecerConexionRestApiInstagram(gson);
+            contactoResponseCall = endpointsApi.getSelfInformation();
+        }
 
         contactoResponseCall.enqueue(new Callback<MascotaResponse>() {
             @Override
