@@ -88,11 +88,11 @@ public class BaseDatos extends SQLiteOpenHelper {
         ArrayList<Mascota> resultado = new ArrayList<>();
         while (registros.moveToNext()) {
             Mascota actual = new Mascota();
-            actual.setId(registros.getInt(registros.getColumnIndex(ConstantesBaseDatos.TABLE_MASCOTA_ID)));
+            /*actual.setId(registros.getInt(registros.getColumnIndex(ConstantesBaseDatos.TABLE_MASCOTA_ID)));
             actual.setFotoPrincipalMascota(new FotoMascota(
                     Integer.valueOf(registros.getString(registros.getColumnIndex(ConstantesBaseDatos.TABLE_FOTOMASCOTA_NROFOTO)))
                     , Integer.valueOf(registros.getString(registros.getColumnIndex(ConstantesBaseDatos.TABLE_FOTOMASCOTA_LIKES)))
-                    , Integer.valueOf(registros.getString(registros.getColumnIndex("id2")))));
+                    , Integer.valueOf(registros.getString(registros.getColumnIndex("id2")))));*/
             actual.setNombre(registros.getString(registros.getColumnIndex(ConstantesBaseDatos.TABLE_MASCOTA_NOMBRE)));
             actual.setFotosSecundarias(null);
             actual.setMeGusta(registros.getInt(registros.getColumnIndex(ConstantesBaseDatos.TABLE_MASCOTA_MEGUSTA)) == 1);
@@ -130,7 +130,7 @@ public class BaseDatos extends SQLiteOpenHelper {
         return resultado;
     }
 
-    public void darLike(int idMascota, boolean like, int idFotoPrincipal) {
+    public void darLike(String idMascota, boolean like, String idFotoPrincipal) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
@@ -140,7 +140,7 @@ public class BaseDatos extends SQLiteOpenHelper {
             contentValues.put(ConstantesBaseDatos.TABLE_MASCOTA_MEGUSTA, 0);
         }
 
-        String where = MessageFormat.format("{0}={1}", ConstantesBaseDatos.TABLE_MASCOTA_ID, String.valueOf(idMascota));
+        String where = MessageFormat.format("{0}={1}", ConstantesBaseDatos.TABLE_MASCOTA_ID, idMascota);
         db.update(ConstantesBaseDatos.TABLE_MASCOTA, contentValues, where, null);
 
         String query = MessageFormat.format("SELECT FM.{0}, FM.{4} FROM {1} FM WHERE FM.{2} = {3}"

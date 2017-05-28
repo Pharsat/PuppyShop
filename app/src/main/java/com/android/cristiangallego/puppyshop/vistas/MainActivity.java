@@ -8,10 +8,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.cristiangallego.puppyshop.R;
 import com.android.cristiangallego.puppyshop.adapter.PageAdapter;
@@ -20,8 +22,16 @@ import com.android.cristiangallego.puppyshop.fragmentos.MascotaPerfilFragment;
 import com.android.cristiangallego.puppyshop.fragmentos.MascotasPrincipalFragment;
 import com.android.cristiangallego.puppyshop.pojo.FotoMascota;
 import com.android.cristiangallego.puppyshop.pojo.Mascota;
+import com.android.cristiangallego.puppyshop.restApi.IEndpointApi;
+import com.android.cristiangallego.puppyshop.restApi.adapter.RestApiAdapter;
+import com.android.cristiangallego.puppyshop.restApi.model.MascotaResponse;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,7 +60,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         instanciarDiseno();
-        InicializarListaDeMascotas();
+        obtenerPerfilPropio();
+    }
+
+    private void ContinuarCargaDeInformacion (){
         setUpViewPager();
 
         setSupportActionBar(this.tbBarraHerramientas);
@@ -103,6 +116,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.mAcercaDe:
                 intento = new Intent(this, Biografia.class);
                 break;
+            case R.id.configurarPerfil:
+                intento = new Intent(this, ConfigurarCuenta.class);
+                break;
         }
         if (intento != null) {
             startActivity(intento);
@@ -141,8 +157,8 @@ public class MainActivity extends AppCompatActivity {
 
         BaseDatos db = new BaseDatos(this);
         // insertarContactos(db);
-        this.mascotas = db.otenerListaPrincipal();
-
+        /*this.mascotas = db.otenerListaPrincipal();*/
+        this.mascotas = new ArrayList<>();
        /* this.mascotas = new ArrayList<>();
 
         ArrayList<FotoMascota> fotosSecundarias1 = new ArrayList<>();
@@ -208,5 +224,27 @@ public class MainActivity extends AppCompatActivity {
         fotosSecundariasJuancho.add(new FotoMascota(R.drawable.juancho, 8));
         fotosSecundariasJuancho.add(new FotoMascota(R.drawable.juancho, 9));
         mascotas.add(new Mascota(new FotoMascota(R.drawable.juancho, 9), "Juancho", 9, false, fotosSecundariasJuancho));*/
+    }
+
+    public void obtenerPerfilPropio() {
+        RestApiAdapter restApiAdapter = new RestApiAdapter();
+        Gson gson = restApiAdapter.construyeGsonDeserializadorSelfInfo();
+        IEndpointApi endpointsApi = restApiAdapter.establecerConexionRestApiInstagram(gson);
+        Call<MascotaResponse> contactoResponseCall = endpointsApi.getSelfInformation();
+
+        contactoResponseCall.enqueue(new Callback<MascotaResponse>() {
+            @Override
+            public void onResponse(Call<MascotaResponse> call, Response<MascotaResponse> response) {
+                MascotaResponse contactoResponse = response.body();
+                mascotas = contactoResponse.getMascotas();
+                ContinuarCargaDeInformacion();
+            }
+
+            @Override
+            public void onFailure(Call<MascotaResponse> call, Throwable t) {
+                Toast.makeText(getBaseContext(), "!Algo paso!", Toast.LENGTH_LONG).show();
+                Log.e("Hay no :(", t.getMessage());
+            }
+        });
     }
 }

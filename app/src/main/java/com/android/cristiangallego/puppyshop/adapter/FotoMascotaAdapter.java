@@ -1,6 +1,7 @@
 package com.android.cristiangallego.puppyshop.adapter;
 
 import android.app.Activity;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.android.cristiangallego.puppyshop.R;
 import com.android.cristiangallego.puppyshop.pojo.FotoMascota;
 import com.android.cristiangallego.puppyshop.pojo.Mascota;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -62,5 +64,10 @@ public class FotoMascotaAdapter extends RecyclerView.Adapter<FotoMascotaAdapter.
     private void pintarElementos(FotoMascotaAdapter.FotoMascotaViewHolder holder, FotoMascota fotoMascota) {
         holder.ivFotoMascota.setImageResource(fotoMascota.getNroFoto());
         holder.tvRaitingMascota.setText(String.valueOf(fotoMascota.getNroLikes()));
+
+        Picasso.with(actividad)
+                .load(Uri.parse(fotoMascota.getUrl()))
+                .placeholder(R.drawable.dog_paw_icon)
+                .into(holder.ivFotoMascota);
     }
 }

@@ -38,6 +38,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".vistas.MainActivity" />
         </activity>
+        <activity android:name=".vistas.ConfigurarCuenta"></activity>
     </application>
 
 </manifest>

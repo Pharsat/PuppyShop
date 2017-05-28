@@ -14,7 +14,7 @@ public class Mascota implements Serializable {
     private int rating;
     private boolean meGusta;
     private ArrayList<FotoMascota> fotosSecundarias;
-    private int id;
+    private String id;
 
     public Mascota(FotoMascota fotoMascota, String nombre, int rating, boolean meGusta, ArrayList<FotoMascota> fotosSecundarias) {
         this.fotoPrincipalMascota = fotoMascota;
@@ -68,11 +68,11 @@ public class Mascota implements Serializable {
         this.fotosSecundarias = fotosSecundarias;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 }

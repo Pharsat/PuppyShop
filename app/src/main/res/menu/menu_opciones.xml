@@ -8,4 +8,8 @@
         android:id="@+id/mAcercaDe"
         android:title="@string/mAcercaDe"
         android:orderInCategory="2"></item>
+    <item
+        android:id="@+id/configurarPerfil"
+        android:title="@string/configurar_cuenta"
+        android:orderInCategory="3"></item>
 </menu>

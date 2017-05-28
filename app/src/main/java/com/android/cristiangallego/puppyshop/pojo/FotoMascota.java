@@ -9,7 +9,8 @@ import java.io.Serializable;
 public class FotoMascota implements Serializable {
     private int nroFoto;
     private int nroLikes;
-    private int id;
+    private String id;
+    private String url;
 
     public FotoMascota() {
 
@@ -31,17 +32,25 @@ public class FotoMascota implements Serializable {
         this.nroLikes = nroLikes;
     }
 
-    public FotoMascota(int nroFoto, int nroLikes, int id) {
+    public FotoMascota(int nroFoto, int nroLikes, String id) {
         this.nroFoto = nroFoto;
         this.nroLikes = nroLikes;
         this.id = id;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

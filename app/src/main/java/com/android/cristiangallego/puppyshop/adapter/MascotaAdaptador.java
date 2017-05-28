@@ -2,6 +2,7 @@ package com.android.cristiangallego.puppyshop.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.android.cristiangallego.puppyshop.R;
 import com.android.cristiangallego.puppyshop.bd.BaseDatos;
 import com.android.cristiangallego.puppyshop.pojo.Mascota;
 import com.android.cristiangallego.puppyshop.vistas.MainActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -58,7 +60,7 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
 
                 BaseDatos db = new BaseDatos(context);
                 // insertarContactos(db);
-                db.darLike(mascota.getId(),nuevoMegusta,mascota.getFotoPrincipalMascota().getId());
+                db.darLike(mascota.getId(), nuevoMegusta, mascota.getFotoPrincipalMascota().getId());
 
                 if (nuevoMegusta) {
                     mascota.getFotoPrincipalMascota().setNroLikes(mascota.getFotoPrincipalMascota().getNroLikes() + 1);
@@ -76,7 +78,6 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
     }
 
     private void pintarElementos(MascotaViewHolder holder, Mascota mascota) {
-        holder.ivFotoMascota.setImageResource(mascota.getFotoPrincipalMascota().getNroFoto());
         holder.tvNombreMascota.setText(mascota.getNombre());
         holder.tvRaitingMascota.setText(String.valueOf(mascota.getFotoPrincipalMascota().getNroLikes()));
         if (mascota.isMeGusta()) {
@@ -84,6 +85,11 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
         } else {
             holder.ibLike.setImageResource(R.drawable.dog_bone_50);
         }
+
+        Picasso.with(actividad)
+                .load(Uri.parse(mascota.getFotoPrincipalMascota().getUrl()))
+                .placeholder(R.drawable.dog_paw_icon)
+                .into(holder.ivFotoMascota);
     }
 
     public static class MascotaViewHolder extends RecyclerView.ViewHolder {

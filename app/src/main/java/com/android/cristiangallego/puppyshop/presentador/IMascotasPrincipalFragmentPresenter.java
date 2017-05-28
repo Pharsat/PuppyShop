@@ -7,4 +7,5 @@ package com.android.cristiangallego.puppyshop.presentador;
 public interface IMascotasPrincipalFragmentPresenter {
     void obteneMascotasBaseDeDatos();
     void mostrarMactoasRV();
+    void obtenerMediosRecientes();
 }
