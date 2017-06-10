@@ -34,7 +34,7 @@ import retrofit2.Response;
 
 public class ConfigurarCuenta extends AppCompatActivity {
 
-    private ArrayList<String> clientsIdResultantes;
+    private ArrayList<Mascota> clientsIdResultantes;
     private Button bBuscar;
     private EditText etCuenta;
 
@@ -95,7 +95,7 @@ public class ConfigurarCuenta extends AppCompatActivity {
                 MascotaResponse contactoResponse = response.body();
                 ArrayList<Mascota> mascotas = contactoResponse.getMascotas();
                 for (Mascota mascota : mascotas) {
-                    clientsIdResultantes.add(mascota.getId());
+                    clientsIdResultantes.add(mascota);
                 }
                 if (clientsIdResultantes.size() > 0) {
                     Intent intento = new Intent(actividad, MainActivity.class);

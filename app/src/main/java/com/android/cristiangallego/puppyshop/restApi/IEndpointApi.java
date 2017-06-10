@@ -2,9 +2,13 @@ package com.android.cristiangallego.puppyshop.restApi;
 
 import com.android.cristiangallego.puppyshop.restApi.model.AmigosResponse;
 import com.android.cristiangallego.puppyshop.restApi.model.MascotaResponse;
+import com.android.cristiangallego.puppyshop.restApi.model.UsuarioResponse;
 
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Url;
 
 /**
@@ -26,4 +30,8 @@ public interface IEndpointApi {
 
     @GET()
     Call<MascotaResponse> getSearchInformation(@Url String query);
+
+    @FormUrlEncoded
+    @POST(ConstantesRestApi.KEY_POST_ID_TOKEN)
+    Call<UsuarioResponse> registrarTokenId(@Field("id_dispositivo") String id_dispositivo, @Field("id_usuario_instagram") String id_usuario_instagram);
 }

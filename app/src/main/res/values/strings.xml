@@ -15,6 +15,9 @@
     <string name="defectoNombreMascota">Selecciona una mascota de la lista principal</string>
     <string name="configurar_cuenta">Configurar Cuenta</string>
     <string name="configura">Configura</string>
+    <string name="recibirNotificaciones">Recibir notificaciones</string>
     <string name="nombre_de_usuario">Nombre de usuario</string>
     <string name="perfilACargar">perfilACargar</string>
+    <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
+    <string name="recivir_notificaciones">Recibir Notificaciones</string>
 </resources>

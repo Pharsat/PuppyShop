@@ -38,7 +38,40 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".vistas.MainActivity" />
         </activity>
-        <activity android:name=".vistas.ConfigurarCuenta"></activity>
+        <activity
+            android:name=".vistas.ConfigurarCuenta"
+            android:parentActivityName=".vistas.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".vistas.MainActivity" />
+        </activity>
+        <activity
+            android:name=".vistas.RecibirNotificaciones"
+            android:parentActivityName=".vistas.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".vistas.MainActivity" />
+        </activity>
+
+        <service android:name=".notificaciones.NotificationService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".notificaciones.NotificacionIdTokenService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".notificaciones.MyJobService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
+            </intent-filter>
+        </service>
+
+
     </application>
 
 </manifest>

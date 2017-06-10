@@ -27,5 +27,9 @@ public class ConstantesRestApi {
     /*https://api.instagram.com/v1/users/search?q=jack&access_token=ACCESS-TOKEN*/
     /*https://api.instagram.com/v1/users/{user-id}/?access_token=ACCESS-TOKEN*/
     /*https://api.instagram.com/v1/users/{user-id}/media/recent/?access_token=ACCESS-TOKEN*/
+
+
+    public static final String ROOT_URL_HEROKU = "https://stormy-shelf-39014.herokuapp.com/";
+    public static final String KEY_POST_ID_TOKEN = "registrar-usuario/";
 }
 

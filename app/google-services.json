@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "649010803339",
+    "firebase_url": "https://puppyshop-c8579.firebaseio.com",
+    "project_id": "puppyshop-c8579",
+    "storage_bucket": "puppyshop-c8579.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:649010803339:android:bf1a14fca7ee2b9b",
+        "android_client_info": {
+          "package_name": "com.android.cristiangallego.puppyshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "649010803339-i7mrslldk1ks5m24j08q97m1ojo09epb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.cristiangallego.puppyshop",
+            "certificate_hash": "2a4749d1b2846b1837fc53152e011570cc277eb6"
+          }
+        },
+        {
+          "client_id": "649010803339-n0o0nfik6i9rrhonkv412apomeq38r02.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDX1d1JxyHGl0F-Km08JBdgTUykYtHsRTs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "649010803339-n0o0nfik6i9rrhonkv412apomeq38r02.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

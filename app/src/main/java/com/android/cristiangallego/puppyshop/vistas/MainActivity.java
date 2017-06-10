@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     private MascotaPerfilFragment perritoFragment;
 
-    private String idClienteACargar;
+    private Mascota idClienteACargar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         Bundle parametros = getIntent().getExtras();
         if (parametros != null) {
             if (parametros.containsKey(getResources().getString(R.string.perfilACargar))) {
-                this.idClienteACargar = parametros.getString(getResources().getString(R.string.pCincoMascotas));
+                this.idClienteACargar = (Mascota)parametros.get(getResources().getString(R.string.perfilACargar));
             }
         }
 
@@ -129,6 +129,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.configurarPerfil:
                 intento = new Intent(this, ConfigurarCuenta.class);
+                break;
+            case R.id.recivirNotificaciones:
+                intento = new Intent(this, RecibirNotificaciones.class);
+                intento.putExtra(getResources().getString(R.string.perfilACargar), this.idClienteACargar);
                 break;
         }
         if (intento != null) {
@@ -240,10 +244,10 @@ public class MainActivity extends AppCompatActivity {
     public void obtenerPerfilPropio() {
         RestApiAdapter restApiAdapter = new RestApiAdapter();
         Call<MascotaResponse> contactoResponseCall;
-        if (this.idClienteACargar != null && !this.idClienteACargar.isEmpty() && !this.idClienteACargar.equals("null")) {
+        if (this.idClienteACargar != null && this.idClienteACargar.getId() != null && !this.idClienteACargar.getId().isEmpty() && !this.idClienteACargar.getId().equals("null")) {
             Gson gson = restApiAdapter.construyeGsonDeserializadorUserMediaRecent();
             IEndpointApi endpointsApi = restApiAdapter.establecerConexionRestApiInstagram(gson);
-            contactoResponseCall = endpointsApi.getRecentUserMedia(ConstantesRestApi.URL_GET_USER_RECENT_MEDIA.replace("{user-id}", this.idClienteACargar));
+            contactoResponseCall = endpointsApi.getRecentUserMedia(ConstantesRestApi.URL_GET_USER_RECENT_MEDIA.replace("{user-id}", this.idClienteACargar.getId()));
         } else {
             Gson gson = restApiAdapter.construyeGsonDeserializadorSelfInfo();
             IEndpointApi endpointsApi = restApiAdapter.establecerConexionRestApiInstagram(gson);

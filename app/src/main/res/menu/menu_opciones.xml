@@ -12,4 +12,8 @@
         android:id="@+id/configurarPerfil"
         android:title="@string/configurar_cuenta"
         android:orderInCategory="3"></item>
+    <item
+        android:id="@+id/recivirNotificaciones"
+        android:title="@string/recivir_notificaciones"
+        android:orderInCategory="3"></item>
 </menu>
