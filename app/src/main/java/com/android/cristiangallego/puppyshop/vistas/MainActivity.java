@@ -174,71 +174,7 @@ public class MainActivity extends AppCompatActivity {
         // insertarContactos(db);
         /*this.mascotas = db.otenerListaPrincipal();*/
         this.mascotas = new ArrayList<>();
-       /* this.mascotas = new ArrayList<>();
-
-        ArrayList<FotoMascota> fotosSecundarias1 = new ArrayList<>();
-        fotosSecundarias1.add(new FotoMascota(R.drawable.azulado, 1));
-        fotosSecundarias1.add(new FotoMascota(R.drawable.azulado, 2));
-        fotosSecundarias1.add(new FotoMascota(R.drawable.azulado, 5));
-        fotosSecundarias1.add(new FotoMascota(R.drawable.azulado, 8));
-        fotosSecundarias1.add(new FotoMascota(R.drawable.azulado, 9));
-        mascotas.add(new Mascota(new FotoMascota(R.drawable.azulado, 5), "Perron Blanco Ojos Azules", 5, false, fotosSecundarias1));
-
-        ArrayList<FotoMascota> fotosSecundarias2 = new ArrayList<>();
-        fotosSecundarias2.add(new FotoMascota(R.drawable.hqdefault, 1));
-        fotosSecundarias2.add(new FotoMascota(R.drawable.hqdefault, 2));
-        fotosSecundarias2.add(new FotoMascota(R.drawable.hqdefault, 5));
-        fotosSecundarias2.add(new FotoMascota(R.drawable.hqdefault, 8));
-        fotosSecundarias2.add(new FotoMascota(R.drawable.hqdefault, 9));
-        mascotas.add(new Mascota(new FotoMascota(R.drawable.hqdefault, 8), "Trosky", 8, false, fotosSecundarias2));
-
-        ArrayList<FotoMascota> fotosSecundarias3 = new ArrayList<>();
-        fotosSecundarias3.add(new FotoMascota(R.drawable.hqdefault_dos, 1));
-        fotosSecundarias3.add(new FotoMascota(R.drawable.hqdefault_dos, 2));
-        fotosSecundarias3.add(new FotoMascota(R.drawable.hqdefault_dos, 5));
-        fotosSecundarias3.add(new FotoMascota(R.drawable.hqdefault_dos, 8));
-        fotosSecundarias3.add(new FotoMascota(R.drawable.hqdefault_dos, 9));
-        mascotas.add(new Mascota(new FotoMascota(R.drawable.hqdefault_dos, 0), "Mete Lomas", 0, false, fotosSecundarias3));
-
-        ArrayList<FotoMascota> fotosSecundarias4 = new ArrayList<>();
-        fotosSecundarias4.add(new FotoMascota(R.drawable.hqdefault_tres, 1));
-        fotosSecundarias4.add(new FotoMascota(R.drawable.hqdefault_tres, 2));
-        fotosSecundarias4.add(new FotoMascota(R.drawable.hqdefault_tres, 5));
-        fotosSecundarias4.add(new FotoMascota(R.drawable.hqdefault_tres, 8));
-        fotosSecundarias4.add(new FotoMascota(R.drawable.hqdefault_tres, 9));
-        mascotas.add(new Mascota(new FotoMascota(R.drawable.hqdefault_tres, 4), "Cuzco", 4, false, fotosSecundarias4));
-
-        ArrayList<FotoMascota> fotosSecundarias5 = new ArrayList<>();
-        fotosSecundarias5.add(new FotoMascota(R.drawable.hqdefault_uno, 1));
-        fotosSecundarias5.add(new FotoMascota(R.drawable.hqdefault_uno, 2));
-        fotosSecundarias5.add(new FotoMascota(R.drawable.hqdefault_uno, 5));
-        fotosSecundarias5.add(new FotoMascota(R.drawable.hqdefault_uno, 8));
-        fotosSecundarias5.add(new FotoMascota(R.drawable.hqdefault_uno, 9));
-        mascotas.add(new Mascota(new FotoMascota(R.drawable.hqdefault_uno, 2), "Panela", 2, false, fotosSecundarias5));
-
-        ArrayList<FotoMascota> fotosSecundarias6 = new ArrayList<>();
-        fotosSecundarias6.add(new FotoMascota(R.drawable.labrador, 1));
-        fotosSecundarias6.add(new FotoMascota(R.drawable.labrador, 2));
-        fotosSecundarias6.add(new FotoMascota(R.drawable.labrador, 5));
-        fotosSecundarias6.add(new FotoMascota(R.drawable.labrador, 8));
-        fotosSecundarias6.add(new FotoMascota(R.drawable.labrador, 9));
-        mascotas.add(new Mascota(new FotoMascota(R.drawable.labrador, 7), "Cuca", 7, false, fotosSecundarias6));
-
-        ArrayList<FotoMascota> fotosSecundarias7 = new ArrayList<>();
-        fotosSecundarias7.add(new FotoMascota(R.drawable.peluche, 1));
-        fotosSecundarias7.add(new FotoMascota(R.drawable.peluche, 2));
-        fotosSecundarias7.add(new FotoMascota(R.drawable.peluche, 5));
-        fotosSecundarias7.add(new FotoMascota(R.drawable.peluche, 8));
-        fotosSecundarias7.add(new FotoMascota(R.drawable.peluche, 9));
-        mascotas.add(new Mascota(new FotoMascota(R.drawable.peluche, 9), "Piripitiflautica", 9, false, fotosSecundarias7));
-
-        ArrayList<FotoMascota> fotosSecundariasJuancho = new ArrayList<>();
-        fotosSecundariasJuancho.add(new FotoMascota(R.drawable.juancho, 1));
-        fotosSecundariasJuancho.add(new FotoMascota(R.drawable.juancho, 2));
-        fotosSecundariasJuancho.add(new FotoMascota(R.drawable.juancho, 5));
-        fotosSecundariasJuancho.add(new FotoMascota(R.drawable.juancho, 8));
-        fotosSecundariasJuancho.add(new FotoMascota(R.drawable.juancho, 9));
-        mascotas.add(new Mascota(new FotoMascota(R.drawable.juancho, 9), "Juancho", 9, false, fotosSecundariasJuancho));*/
+       /* this.mascotas = new ArrayList<>();*/
     }
 
     public void obtenerPerfilPropio() {

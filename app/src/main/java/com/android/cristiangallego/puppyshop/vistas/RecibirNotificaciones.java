@@ -65,7 +65,6 @@ public class RecibirNotificaciones extends AppCompatActivity {
                 String token = FirebaseInstanceId.getInstance().getToken();
 
                 // Log and toast
-
                 RestApiAdapter restApiAdapter = new RestApiAdapter();
                 IEndpointApi endpoints = restApiAdapter.establecerConexionRestAPIHeroku();
                 Call<UsuarioResponse> usuarioResponseCall = endpoints.registrarTokenId(token, idClienteACargar.getId());

@@ -42,12 +42,14 @@ public class MascotaDeserializador implements JsonDeserializer<MascotaResponse> 
             String url = standardResolution.get(JsonKeys.MEDIA_URL).getAsString();
             JsonObject likesObject = contactoResponseUser.getAsJsonObject(JsonKeys.MEDIA_LIKES);
             int likes = likesObject.get(JsonKeys.MEDIA_LIKES_COUNT).getAsInt();
+            String idFoto = contactoResponseUser.get("id").getAsString();
             Mascota contacto = new Mascota();
             contacto.setId(id);
             contacto.setNombre(nombreCompleto);
             contacto.setFotoPrincipalMascota(new FotoMascota());
             contacto.getFotoPrincipalMascota().setNroLikes(likes);
             contacto.getFotoPrincipalMascota().setUrl(url);
+            contacto.getFotoPrincipalMascota().setId(idFoto);
             mascotas.add(contacto);
         }
         return mascotas;

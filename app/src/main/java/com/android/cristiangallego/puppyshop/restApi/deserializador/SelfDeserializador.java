@@ -38,6 +38,7 @@ public class SelfDeserializador implements JsonDeserializer<MascotaResponse> {
         String url = contactoResponseData.get(JsonKeys.MEDIA_PROFILEPIC).getAsString();
         JsonObject likesObject = contactoResponseData.getAsJsonObject(JsonKeys.MEDIA_COUNTS);
         int likes = likesObject.get(JsonKeys.MEDIA_COUNTS_MEDIA).getAsInt();
+
         Mascota contacto = new Mascota();
         contacto.setId(id);
         contacto.setNombre(nombreCompleto);

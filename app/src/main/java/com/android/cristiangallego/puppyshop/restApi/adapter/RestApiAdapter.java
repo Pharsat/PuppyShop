@@ -27,6 +27,14 @@ public class RestApiAdapter {
         return retrofit.create(IEndpointApi.class);
     }
 
+    public IEndpointApi establecerConexionRestApiInstagram(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ConstantesRestApi.ROOT_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        return retrofit.create(IEndpointApi.class);
+    }
+
     public Gson construyeGsonDeserializadorSelfMediaRecent(){
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(MascotaResponse.class, new MascotaDeserializador());

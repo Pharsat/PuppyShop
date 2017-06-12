@@ -25,12 +25,14 @@ public class MascotasPrincipalFragment extends Fragment implements IMascotasPrin
     private RecyclerView rvMascotas;
     private ArrayList<Mascota> mascotas;
     private IMascotasPrincipalFragmentPresenter presenter;
+    private Mascota yoMismo;
 
     public MascotasPrincipalFragment() {
-        // Required empty public constructor
+
     }
 
     public void setMascotas(ArrayList<Mascota> mascotas) {
+        this.yoMismo = mascotas.get(0);
         this.mascotas = mascotas;
     }
 
@@ -47,8 +49,7 @@ public class MascotasPrincipalFragment extends Fragment implements IMascotasPrin
 
     @Override
     public MascotaAdaptador crearAdaptador(ArrayList<Mascota> mascotas) {
-        return new MascotaAdaptador(mascotas, getActivity(), getContext());
-
+        return new MascotaAdaptador(mascotas, getActivity(), getContext(), yoMismo);
     }
 
     @Override
@@ -61,5 +62,10 @@ public class MascotasPrincipalFragment extends Fragment implements IMascotasPrin
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         rvMascotas.setLayoutManager(llm);
+    }
+
+    @Override
+    public void configuraMiMascota(Mascota setYoMismo) {
+        this.yoMismo = setYoMismo;
     }
 }

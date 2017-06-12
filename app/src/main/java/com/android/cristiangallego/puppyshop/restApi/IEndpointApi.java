@@ -1,6 +1,8 @@
 package com.android.cristiangallego.puppyshop.restApi;
 
 import com.android.cristiangallego.puppyshop.restApi.model.AmigosResponse;
+import com.android.cristiangallego.puppyshop.restApi.model.BasicResponse;
+import com.android.cristiangallego.puppyshop.restApi.model.LikeInstagramResponse;
 import com.android.cristiangallego.puppyshop.restApi.model.MascotaResponse;
 import com.android.cristiangallego.puppyshop.restApi.model.UsuarioResponse;
 
@@ -32,6 +34,16 @@ public interface IEndpointApi {
     Call<MascotaResponse> getSearchInformation(@Url String query);
 
     @FormUrlEncoded
+    @POST()
+    Call<BasicResponse> getLike(@Url String mediaId, @Field("access_token") String access_token);
+
+    @FormUrlEncoded
     @POST(ConstantesRestApi.KEY_POST_ID_TOKEN)
     Call<UsuarioResponse> registrarTokenId(@Field("id_dispositivo") String id_dispositivo, @Field("id_usuario_instagram") String id_usuario_instagram);
+
+    @FormUrlEncoded
+    @POST(ConstantesRestApi.KEY_POST_LIKE_INSTAGRAM)
+    Call<LikeInstagramResponse> darLikeInstagram(@Field("id_dispositivo") String id_dispositivo, @Field("id_usuario_instagram") String id_usuario_instagram, @Field("id_foto_instagram") String id_foto_instagram, @Field("id_mi_usuario") String id_mi_usuario);
+
+
 }

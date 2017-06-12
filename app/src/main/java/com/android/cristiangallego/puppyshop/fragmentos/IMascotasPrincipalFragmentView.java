@@ -16,4 +16,7 @@ public interface IMascotasPrincipalFragmentView {
     void inicializarAdaptadorRV(MascotaAdaptador adaptador);
 
     void generarLayoutVertical();
+
+    void configuraMiMascota(Mascota setYoMismo);
+
 }
