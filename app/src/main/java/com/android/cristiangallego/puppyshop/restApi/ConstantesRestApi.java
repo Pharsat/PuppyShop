@@ -37,5 +37,6 @@ public class ConstantesRestApi {
     public static final String ROOT_URL_HEROKU = "https://stormy-shelf-39014.herokuapp.com/";
     public static final String KEY_POST_ID_TOKEN = "registrar-usuario/";
     public static final String KEY_POST_LIKE_INSTAGRAM = "like-instagram/";
+    public static final String KEY_POST_NOTIFICAR_PERSONA = ROOT_URL_HEROKU + "notificarALaPersona/{id-dispositivo}";
 }
 

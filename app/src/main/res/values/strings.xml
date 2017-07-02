@@ -20,4 +20,7 @@
     <string name="perfilACargar">perfilACargar</string>
     <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
     <string name="recivir_notificaciones">Recibir Notificaciones</string>
+    <string name="view_profile">Ver perfil</string>
+    <string name="follow">Seguir/No Seguir</string>
+    <string name="raiteador">Ver raiteador</string>
 </resources>

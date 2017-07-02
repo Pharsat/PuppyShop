@@ -87,10 +87,10 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
                     String token = FirebaseInstanceId.getInstance().getToken();
                     RestApiAdapter restApiAdapter = new RestApiAdapter();
                     IEndpointApi endpoints = restApiAdapter.establecerConexionRestAPIHeroku();
-                    while(miPropioUsuario == null) {
+                    while (miPropioUsuario == null) {
                         //nothing just wait.
                     }
-                    Call<LikeInstagramResponse> usuarioResponseCall = endpoints.darLikeInstagram(token, mascota.getId(), mascota.getFotoPrincipalMascota().getId(),miPropioUsuario.getId());
+                    Call<LikeInstagramResponse> usuarioResponseCall = endpoints.darLikeInstagram(token, mascota.getId(), mascota.getFotoPrincipalMascota().getId(), miPropioUsuario.getId());
                     usuarioResponseCall.enqueue(new Callback<LikeInstagramResponse>() {
                         @Override
                         public void onResponse(Call<LikeInstagramResponse> call, Response<LikeInstagramResponse> response) {
@@ -120,6 +120,8 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
                             Log.e("Hay no :(", t.getMessage());
                         }
                     });
+
+                    enviarNotificacion(mascota.getId());
 
                 } else {
                     mascota.getFotoPrincipalMascota().setNroLikes(mascota.getFotoPrincipalMascota().getNroLikes() - 1);
@@ -166,5 +168,30 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
             tvRaitingMascota = (TextView) itemView.findViewById(R.id.tvRaitingMascota);
             ibLike = (ImageButton) itemView.findViewById(R.id.ibLike);
         }
+    }
+
+    private void enviarNotificacion(String IdDestinatario) {
+        RestApiAdapter restApiAdapter2 = new RestApiAdapter();
+        IEndpointApi endpoints2 = restApiAdapter2.establecerConexionRestApiInstagram();
+        Call<LikeInstagramResponse[]> usuarioResponseCall2 = endpoints2.notificarALaPersona(ConstantesRestApi.KEY_POST_NOTIFICAR_PERSONA.replace("{id-dispositivo}", IdDestinatario));
+        usuarioResponseCall2.enqueue(new Callback<LikeInstagramResponse[]>() {
+            @Override
+            public void onResponse(Call<LikeInstagramResponse[]> call, Response<LikeInstagramResponse[]> response) {
+                LikeInstagramResponse[] contactoResponse = response.body();
+                if (contactoResponse.length > 0) {
+                    for (LikeInstagramResponse respuesta : contactoResponse) {
+                        Toast.makeText(actividad, "Se ha notificado al usuario, " + respuesta.getId_usuario_instagram(), Toast.LENGTH_SHORT).show();
+                    }
+                } else                 {
+                    Toast.makeText(actividad, "El usuario al que le diste like no existia en mi BD :(", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LikeInstagramResponse[]> call, Throwable t) {
+                Toast.makeText(actividad, "!Algo paso!", Toast.LENGTH_LONG).show();
+                Log.e("Hay no :(", t.getMessage());
+            }
+        });
     }
 }

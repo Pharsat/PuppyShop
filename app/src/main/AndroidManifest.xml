@@ -70,6 +70,13 @@
                 <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
             </intent-filter>
         </service>
+        <receiver android:name=".broadcast.Broadcaster">
+            <intent-filter>
+                <action android:name="PERFIL" />
+                <action android:name="FOLLOW" />
+                <action android:name="RAITEADOR" />
+            </intent-filter>
+        </receiver>
 
 
     </application>

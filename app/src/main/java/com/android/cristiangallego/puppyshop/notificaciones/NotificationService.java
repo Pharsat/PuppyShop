@@ -4,10 +4,14 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.support.v7.app.NotificationCompat;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
+import android.support.v4.app.NotificationCompat.WearableExtender;
 import android.util.Log;
+import android.view.Gravity;
 
 import com.android.cristiangallego.puppyshop.R;
 import com.android.cristiangallego.puppyshop.vistas.MainActivity;
@@ -23,6 +27,7 @@ import com.google.firebase.messaging.RemoteMessage;
 
 public class NotificationService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMsgService";
+    private static final int NOTIFICATION_ID = 0;
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -89,23 +94,54 @@ public class NotificationService extends FirebaseMessagingService {
      * @param messageBody FCM message body received.
      */
     private void sendNotification(String messageBody) {
+
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
 
-        Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Action accionPerfil = new NotificationCompat.Action.Builder(R.drawable.ic_full_cat_profile
+                , getString(R.string.view_profile)
+                , CrearPendingIntent("PERFIL")).build();
+
+        NotificationCompat.Action accionSeguir = new NotificationCompat.Action.Builder(R.drawable.ic_full_compass
+                , getString(R.string.follow)
+                , CrearPendingIntent("FOLLOW")).build();
+
+        NotificationCompat.Action accionPerfilNotificador = new NotificationCompat.Action.Builder(R.drawable.ic_full_user
+                , getString(R.string.raiteador)
+                , CrearPendingIntent("RAITEADOR")).build();
+
+
+        NotificationCompat.WearableExtender wereableExtender = new NotificationCompat.WearableExtender()
+                .setHintHideIcon(true)
+                .setBackground(BitmapFactory.decodeResource(getResources(),R.drawable.notification_background))
+                .setGravity(Gravity.CENTER_VERTICAL);
+
+        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this);
         notificationBuilder.setSmallIcon(R.drawable.dog_paw_icon)
                 .setContentTitle("FCM Message")
                 .setContentText(messageBody)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
-                .setContentIntent(pendingIntent);
+                .setContentIntent(pendingIntent)
+                .extend(wereableExtender.addAction(accionPerfil)
+                        .addAction(accionSeguir)
+                        .addAction(accionPerfilNotificador));
 
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        //(NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+        notificationManager.notify(NOTIFICATION_ID /* ID of notification */, notificationBuilder.build());
+    }
+
+    private PendingIntent CrearPendingIntent(String Accion)
+    {
+        Intent intentPerfil = new Intent();
+        intentPerfil.setAction(Accion);
+        intentPerfil.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        return PendingIntent.getBroadcast(this, 0 /* Request code */, intentPerfil, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 }

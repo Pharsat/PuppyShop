@@ -45,5 +45,6 @@ public interface IEndpointApi {
     @POST(ConstantesRestApi.KEY_POST_LIKE_INSTAGRAM)
     Call<LikeInstagramResponse> darLikeInstagram(@Field("id_dispositivo") String id_dispositivo, @Field("id_usuario_instagram") String id_usuario_instagram, @Field("id_foto_instagram") String id_foto_instagram, @Field("id_mi_usuario") String id_mi_usuario);
 
-
+    @GET()
+    Call<LikeInstagramResponse[]> notificarALaPersona(@Url String idDispositivoPersona);
 }
