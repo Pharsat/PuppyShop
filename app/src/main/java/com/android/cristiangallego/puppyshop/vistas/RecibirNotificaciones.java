@@ -1,11 +1,14 @@
 package com.android.cristiangallego.puppyshop.vistas;
 
 import android.app.Activity;
+import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -94,6 +97,13 @@ public class RecibirNotificaciones extends AppCompatActivity {
         this.bBuscar.setEnabled(this.idClienteACargar != null);
         if(this.idClienteACargar != null) {
             this.tvCuentaconfigurada.setText("Nombre: " + this.idClienteACargar.getNombre() + " Id: " + this.idClienteACargar.getId());
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Slide efectoSlide = new Slide(Gravity.TOP);
+            efectoSlide.setDuration(5000);
+            getWindow().setEnterTransition(efectoSlide);
+            //startActivity(actividad, ActivityOptionsCompat.makeSceneTransitionAnimation(this, this.findViewById(android.R.id.content), "").toBundle());
         }
     }
 

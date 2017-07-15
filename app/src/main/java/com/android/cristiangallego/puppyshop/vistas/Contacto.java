@@ -1,10 +1,13 @@
 package com.android.cristiangallego.puppyshop.vistas;
 
+import android.os.Build;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +42,13 @@ public class Contacto extends AppCompatActivity {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         this.tvTitulo.setText(getTitle());
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Slide efectoSlide = new Slide(Gravity.TOP);
+            efectoSlide.setDuration(5000);
+            getWindow().setEnterTransition(efectoSlide);
+            //startActivity(actividad, ActivityOptionsCompat.makeSceneTransitionAnimation(this, this.findViewById(android.R.id.content), "").toBundle());
+        }
     }
 
     public void btnEnviarContacto_Clic(View view) {

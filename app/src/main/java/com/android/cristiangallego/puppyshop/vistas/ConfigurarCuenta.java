@@ -3,14 +3,18 @@ package com.android.cristiangallego.puppyshop.vistas;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -72,6 +76,13 @@ public class ConfigurarCuenta extends AppCompatActivity {
                 obtenerIdPorUsuario();
             }
         });
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Slide efectoSlide = new Slide(Gravity.TOP);
+            efectoSlide.setDuration(5000);
+            getWindow().setEnterTransition(efectoSlide);
+            //startActivity(actividad, ActivityOptionsCompat.makeSceneTransitionAnimation(this, this.findViewById(android.R.id.content), "").toBundle());
+        }
     }
 
     public void instanciarDiseno() {
@@ -100,7 +111,14 @@ public class ConfigurarCuenta extends AppCompatActivity {
                 if (clientsIdResultantes.size() > 0) {
                     Intent intento = new Intent(actividad, MainActivity.class);
                     intento.putExtra(getResources().getString(R.string.perfilACargar), clientsIdResultantes.get(0));
-                    startActivity(intento);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        Slide efectoSlide = new Slide();
+                        efectoSlide.setDuration(12000);
+                        getWindow().setExitTransition(efectoSlide);
+                        startActivity(intento, ActivityOptionsCompat.makeSceneTransitionAnimation(actividad, actividad.findViewById(android.R.id.content), "").toBundle());
+                    } else {
+                        startActivity(intento);
+                    }
                 } else {
                     Toast.makeText(getBaseContext(), "Lo sentimos, no hay ningun resultado", Toast.LENGTH_LONG).show();
                 }

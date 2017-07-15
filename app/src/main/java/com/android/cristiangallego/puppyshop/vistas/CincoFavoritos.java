@@ -1,10 +1,13 @@
 package com.android.cristiangallego.puppyshop.vistas;
 
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
+import android.view.Gravity;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,7 +58,12 @@ public class CincoFavoritos extends AppCompatActivity {
             }
         });
 
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Slide efectoSlide = new Slide(Gravity.TOP);
+            efectoSlide.setDuration(5000);
+            getWindow().setEnterTransition(efectoSlide);
+            //startActivity(actividad, ActivityOptionsCompat.makeSceneTransitionAnimation(this, this.findViewById(android.R.id.content), "").toBundle());
+        }
     }
 
     private void continuar(){

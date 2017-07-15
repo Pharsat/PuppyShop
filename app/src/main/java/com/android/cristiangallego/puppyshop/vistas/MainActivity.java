@@ -1,14 +1,19 @@
 package com.android.cristiangallego.puppyshop.vistas;
 
 import android.content.Intent;
+import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.transition.Explode;
+import android.transition.Slide;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -67,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         Bundle parametros = getIntent().getExtras();
         if (parametros != null) {
             if (parametros.containsKey(getResources().getString(R.string.perfilACargar))) {
-                this.idClienteACargar = (Mascota)parametros.get(getResources().getString(R.string.perfilACargar));
+                this.idClienteACargar = (Mascota) parametros.get(getResources().getString(R.string.perfilACargar));
             }
         }
 
@@ -136,7 +141,14 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         if (intento != null) {
-            startActivity(intento);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                Slide efectoSlide = new Slide();
+                efectoSlide.setDuration(12000);
+                getWindow().setExitTransition(efectoSlide);
+                startActivity(intento, ActivityOptionsCompat.makeSceneTransitionAnimation(this, this.findViewById(android.R.id.content), "").toBundle());
+            } else {
+                startActivity(intento);
+            }
         }
 
         return super.onOptionsItemSelected(item);
